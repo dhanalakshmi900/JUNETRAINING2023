@@ -1,11 +1,26 @@
-class First{
-public static void main(String[] args)throws Exception{
-Thread t=Thread.currentThread();
-System.out.println("CURRENTTHREAD="+t);
-t.setName("Newthread by dhana");
-t.setPriority(t.getPriority()-1);
-System.out.println("CURRENTTHREAD="+t);
-System.out.println("NAME="+t.getName());
+class ChildThread extends Thread{
+public void run()
+{
+for(int i=1;i<=4;i++)
+{
+try
+{
+Thread.sleep(500);
+}
+catch(Exception e)
+{
+System.out.println(e);
+}
+System.out.println("Childhood thread execution-"+i);
 }
 }
-
+}
+class Test{
+public static void main(String args[])throws Exception
+{
+ChildThread th1=new ChildThread();
+th1.start();
+th1.join();
+System.out.println("Main Thread Completed");
+}
+}
